@@ -1,18 +1,12 @@
 from google import search
 
-
-def cookie_func(url):
-    return True
-
-
-def search_web(search_list):
+def search_web(search_list, visited_urls):
     search_dict = {}
-    # query = 'green tea'
     for query in search_list:
         i = 0
         url_list = []
         for url in search(query, stop=10):
-            if cookie_func(url):
+            if url not in visited_urls:
                 url_list.append(url)
                 i += 1
                 if i == 3:

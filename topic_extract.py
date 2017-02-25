@@ -131,7 +131,7 @@ if __name__ == '__main__':
     history_file_path = get_history_file()
     get_tables_as_dicts(history_file_path)
     todays_topics = get_todays_topics()
-    search_res = get_search.search_web([s[1][0][0] for s in todays_topics])
+    search_res = get_search.search_web([s[1][0][0] for s in todays_topics], urls_table_dict)
     print search_res
 
     os.remove(history_file_path)
