@@ -1,0 +1,19 @@
+select term
+from urls natural join keyword_search_terms
+where last_visit_time datetime(last_visit_time/1000000 + (strftime('%s', '2017-02-24')),'unixepoch');
+
+
+
+select datetime(last_visit_time/1000000 + (strftime('%s', '1601-01-01')),'unixepoch') from urls
+where instr(datetime(last_visit_time/1000000 + (strftime('%s', '1601-01-01')),'unixepoch'), '2017-02-24') > 0;
+
+
+select term
+from urls, keyword_search_terms
+where id=url_id
+and instr(datetime(last_visit_time/1000000 + (strftime('%s', '1601-01-01')),'unixepoch'), '2017-02-10') > 0;
+
+select url from urls where instr(datetime(last_visit_time/1000000 + (strftime('%s', '1601-01-01')),'unixepoch'), '2017-02-10') > 0;
+
+
+select term, url from urls, keyword_search_terms where id=url_id and instr(datetime(last_visit_time/1000000 + (strftime('%s', '1601-01-01')),'unixepoch'), '2017-02-10') > 0;
