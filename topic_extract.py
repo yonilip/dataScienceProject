@@ -67,6 +67,7 @@ def get_tables_as_dicts(history_file_path):
     '''
     c.execute(keywords_table)
     keywords_tuple_list = c.fetchall()
+    print(keywords_tuple_list)
     for t in keywords_tuple_list:
         if is_english(t[3]):  # removes non english queries
             keyword_search_terms_table_dict[t[1]] = t[2:]
