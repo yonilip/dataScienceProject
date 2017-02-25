@@ -1,0 +1,33 @@
+[   (   0,
+        [   (u'gordon', 0.1064642372502243),
+            (u'ramsay', 0.10645317289110848),
+            (u'python', 0.063532730941702892),
+            (u'sql', 0.043802325679819641),
+            (u'tabl', 0.031296818462376058),
+            (u'javascript', 0.031295346174119665),
+            (u'start', 0.031294470546040794),
+            (u'wife', 0.031034457716878013),
+            (u'jimmi', 0.030665737593824308),
+            (u'hell', 0.018769259041600081)]),
+    (   1,
+        [   (u'thundercat', 0.11924083545865544),
+            (u'oliv', 0.092647487374761708),
+            (u'jami', 0.07773648967822816),
+            (u'python', 0.061645568231824439),
+            (u'stir', 0.025892770219129061),
+            (u'fri', 0.025892677743617028),
+            (u'tokyo', 0.025816374944297452),
+            (u'extens', 0.025768455937265768),
+            (u'quick', 0.015520215177575713),
+            (u'write', 0.015488169518428581)])]
+[u'gordon ramsay', u'thundercat']
+{   u'gordon ramsay': [   u'http://www.nbcnews.com/news/world/celeb-chef-gordon-ramsay-s-laws-charged-computer-hacking-case-n724411',
+                          u'http://ftw.usatoday.com/2017/02/gordon-ramsay-daytona-day-party-recipes-pork-sliders-video',
+                          u'http://www.delish.com/food-news/a51706/gordon-ramsay-in-laws-charged-with-hacking/'],
+    u'thundercat': [   u'http://www.rollingstone.com/music/news/hear-kendrick-lamar-thundercat-on-funky-lament-walk-on-by-w468480',
+                       u'https://www.ft.com/content/59b1e366-f96e-11e6-9516-2d969e0d3b65',
+                       u'http://www.spin.com/2017/02/thundercat-new-album-drunk/']}
+
+
+
+<type 'list'>: [u'stream thundercat the beyond', u'jamie oliver video', u'writing chrome extensions in python', u'python sql table to dict', u'python copy file', u'python sql table to dictionary', u'thundercat meaning', u'javascript start proccess', u'javascript start process', u'thundercat tokyo', u'thundercat', u'python', u'thundercat kendrick lamar', u'thundercat real name', u'gordon ramsay', u'gordon ramsay hells kitchen', u'thundercat tickets', u'thundercat listen', u'jamie oliver stir fry', u'jamie oliver stir fry quick', u'thundercat new', u'jimmy oliver wife', u'jimmy oliver age', u'get all text from site', u'gordon ramsay wife', u'python sql', u'thundercat live', u'jamie oliver dinner', u'python get home directory', u'python check that string in english', u'compile python', u'gordon ramsay daughters', u'thundercat tokyo', u'python search google', u'extensions', u'gordon ramsay pad thai', u'gordon ramsay soup', u'gordon ramsay recipe', u'jamie oliver', u'jamie oliver fish', u'jamie oliver best', u'gordon ramsay hotels shoq']

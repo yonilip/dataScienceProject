@@ -1,6 +1,6 @@
 from google import search
 
-undesired_sites = ['wikipedia']
+undesired_sites = ['wikipedia', 'facebook', 'twitter', 'instagram']
 
 
 def reduce_url_to_base_site(url):
