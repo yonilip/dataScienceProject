@@ -1,5 +1,6 @@
 from google import search
 
+
 def cookie_func(url):
     return True
 
@@ -15,11 +16,10 @@ def search_web(search_list):
                 url_list.append(url)
                 i += 1
                 if i == 3:
-                    print(i)
                     break
         search_dict[query] = url_list
     return search_dict
 
 
-res = search_web(["green tea", "baseball"])
-print(res)
+# res = search_web(["green tea", "baseball"])
+# print(res)

@@ -5,8 +5,9 @@ import platform
 import os
 import sys
 import shutil
-
+import lda
 import datetime
+import get_search
 
 
 dst_path = ""
@@ -112,17 +113,25 @@ def get_tables_as_dicts(history_file_path):
 
 
 def get_todays_topics():
+    results = []
     for id, val in keyword_search_terms_table_dict.iteritems():
         last_visit_time = urls_table_dict[id][4]
         time_obj = datetime.datetime(1601, 1, 1) + datetime.timedelta(microseconds=last_visit_time)
         if time_obj.strftime('%Y-%m-%d') == datetime.datetime.now().strftime('%Y-%m-%d'):
-            print val[1]
+            results.append(val[1])
+    model = lda.lda(results)
+    topics = model.show_topics(formatted=False)
+    return topics
+    # TODO return stemmed words to original word (maybe find word that contained them
+
 
 
 
 if __name__ == '__main__':
     history_file_path = get_history_file()
     get_tables_as_dicts(history_file_path)
-    get_todays_topics()
+    todays_topics = get_todays_topics()
+    search_res = get_search.search_web([s[1][0][0] for s in todays_topics])
+    print search_res
 
     os.remove(history_file_path)

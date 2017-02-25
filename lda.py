@@ -25,30 +25,34 @@ doc_x = "westworld explained, westworld season 2 theory, westworld nerdwriter, M
 #doc_set = [doc_a, doc_b, doc_c, doc_d, doc_e]
 doc_set = [s for s in doc_x.split(",")]
 
-# list for tokenized documents in loop
-texts = []
 
-# loop through document list
-for i in doc_set:
 
-    # clean and tokenize document string
-    raw = i.lower()
-    tokens = tokenizer.tokenize(raw)
+def lda(doc_set):
+    # list for tokenized documents in loop
+    texts = []
 
-    # remove stop words from tokens
-    stopped_tokens = [i for i in tokens if not i in en_stop]
+    # loop through document list
+    for i in doc_set:
+        # clean and tokenize document string
+        raw = i.lower()
+        tokens = tokenizer.tokenize(raw)
 
-    # stem tokens
-    stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
+        # remove stop words from tokens
+        stopped_tokens = [i for i in tokens if not i in en_stop]
 
-    # add tokens to list
-    texts.append(stemmed_tokens)
+        # stem tokens
+        stemmed_tokens = [p_stemmer.stem(i) for i in stopped_tokens]
 
-# turn our tokenized documents into a id <-> term dictionary
-dictionary = corpora.Dictionary(texts)
+        # add tokens to list
+        texts.append(stemmed_tokens)
 
-# convert tokenized documents into a document-term matrix
-corpus = [dictionary.doc2bow(text) for text in texts]
+    # turn our tokenized documents into a id <-> term dictionary
+    dictionary = corpora.Dictionary(texts)
 
-# generate LDA model
-ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word = dictionary, passes=20)
+    # convert tokenized documents into a document-term matrix
+    corpus = [dictionary.doc2bow(text) for text in texts]
+
+    # generate LDA model
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word=dictionary, passes=20)
+
+    return ldamodel
