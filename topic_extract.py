@@ -6,7 +6,7 @@ import os
 import sys
 import shutil
 
-from datetime import datetime
+import datetime
 
 
 dst_path = ""
@@ -50,7 +50,7 @@ def get_history_file():
 def get_tables_as_dicts(history_file_path):
     conn = sqlite3.connect(history_file_path)
     c = conn.cursor()
-    date = datetime.now().strftime('%Y-%m-%d')
+    date = datetime.datetime.now().strftime('%Y-%m-%d')
     # q = "select term from urls, keyword_search_terms " \
     #     "where id=url_id and " \
     #     "instr(datetime(last_visit_time / 1000000 + (strftime('%s', '1601-01-01')), " \
@@ -111,8 +111,18 @@ def get_tables_as_dicts(history_file_path):
             visits_table_dict[t[1]] = t[2:]
 
 
+def get_todays_topics():
+    for id, val in keyword_search_terms_table_dict.iteritems():
+        last_visit_time = urls_table_dict[id][4]
+        time_obj = datetime.datetime(1601, 1, 1) + datetime.timedelta(microseconds=last_visit_time)
+        if time_obj.strftime('%Y-%m-%d') == datetime.datetime.now().strftime('%Y-%m-%d'):
+            print val[1]
+
+
+
 if __name__ == '__main__':
-    # TODO remove history file after running
     history_file_path = get_history_file()
     get_tables_as_dicts(history_file_path)
+    get_todays_topics()
 
+    os.remove(history_file_path)
