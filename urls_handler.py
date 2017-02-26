@@ -34,6 +34,5 @@ if __name__ == '__main__':
         for url in query_list:
             webbrowser.get(path + " %s").open(url)
 
-    #os.system("taskkill /F /IM chrome.exe")
 
 
