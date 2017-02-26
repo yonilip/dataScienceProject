@@ -2,4 +2,3 @@ google
 nltk
 stop_words
 gensim
-webbrowser

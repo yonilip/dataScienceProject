@@ -34,7 +34,3 @@ def search_web(search_list, urls_table_dict):
                     break
         search_dict[query] = url_list
     return search_dict
-
-
-# res = search_web(["green tea", "baseball"])
-# print(res)

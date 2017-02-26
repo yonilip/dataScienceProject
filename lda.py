@@ -19,12 +19,13 @@ doc_c = "lipton soup best"
 doc_d = "tomato soup recipe"
 doc_e = "best tea brand"
 
-doc_x = "westworld explained, westworld season 2 theory, westworld nerdwriter, MSE, linear relation, linear relation symbol, perplexity translatr, perplexity translate, naive bayes, radiohead live, myxomatosis radiohead, myxomatosis,norm, log linear model regularization, radiohead wiki"
+doc_x = "westworld explained, westworld season 2 theory, westworld nerdwriter, MSE, linear relation, " \
+        "linear relation symbol, perplexity translatr, perplexity translate, naive bayes, radiohead live, " \
+        "myxomatosis radiohead, myxomatosis,norm, log linear model regularization, radiohead wiki"
 
 # compile sample documents into a list
-#doc_set = [doc_a, doc_b, doc_c, doc_d, doc_e]
+# doc_set = [doc_a, doc_b, doc_c, doc_d, doc_e]
 doc_set = [s for s in doc_x.split(",")]
-
 
 
 def lda(doc_set):
@@ -53,6 +54,6 @@ def lda(doc_set):
     corpus = [dictionary.doc2bow(text) for text in texts]
 
     # generate LDA model
-    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=3, id2word=dictionary, passes=20)
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word=dictionary, passes=20)
 
     return ldamodel

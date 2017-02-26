@@ -21,6 +21,11 @@ epsilon = 0.01
 
 
 def is_english(s):
+    '''
+    if s is not ascii encodable, it will return flase indicating that it is not in English
+    :param s: string
+    :return: True if s in English
+    '''
     try:
         s.encode('ascii')
     except UnicodeEncodeError:
@@ -30,6 +35,9 @@ def is_english(s):
 
 
 def get_history_file():
+    '''
+    :return: path to a copy of Google Chrome's history
+    '''
     global dst_path
     try:
         windows_path_to_history = os.path.join(r"C:\Users", os.getlogin(),
@@ -47,19 +55,24 @@ def get_history_file():
         else:
             raise Exception
 
-        dst_path = "./History"
-        # shutil.copy(path, dst_path)
-        shutil.copy(r"/Users/yoni/Documents/Univerity/Data Science/Projects/History", dst_path)
-
+        dst_path = r"./History"
+        shutil.copy(path, dst_path)
     except:
         exit_if_err()
+
     return dst_path
 
 
 def get_tables_as_dicts(history_file_path):
+    '''
+    Gets the tables from the SQL history file and converts them to python dictionaries.
+    Each SQL table schemes are written as multiline comments
+    :param history_file_path: path to copied history file
+    '''
     conn = sqlite3.connect(history_file_path)
     c = conn.cursor()
 
+    # Parse keyword_search_terms
     keywords_table = "select * from keyword_search_terms"
     '''
     keyword_search_terms(keyword_id INTEGER NOT NULL,
@@ -73,6 +86,7 @@ def get_tables_as_dicts(history_file_path):
         if is_english(t[3]):  # removes non english queries
             keyword_search_terms_table_dict[t[1]] = t[2:]
 
+    # parse url table
     url_table = "select * from urls"
     c.execute(url_table)
     urls_tuple_list = c.fetchall()
@@ -92,6 +106,7 @@ def get_tables_as_dicts(history_file_path):
         if is_english(t[1]):
             urls_table_dict[t[0]] = t[1:]  # id is key, value is rest of tuple
 
+    # parse visits table
     visits_table = "select * from visits"
     '''visits(id INTEGER PRIMARY KEY,
               url INTEGER NOT NULL,
@@ -119,17 +134,14 @@ def get_todays_topics():
         last_visit_time = urls_table_dict[id][4]
         # google chromes timestamp is counted in nanosecs from 1,1,1601....
         time_obj = datetime.datetime(1601, 1, 1) + datetime.timedelta(microseconds=last_visit_time)
-        # TODO reset this to today
-        # if time_obj.strftime('%Y-%m-%d') == datetime.datetime.now().strftime('%Y-%m-%d'):
-        # if time_obj.strftime('%Y-%m-%d') == '2017-02-23':
-        results.append(val[1])
+        if time_obj.strftime('%Y-%m-%d') == datetime.datetime.now().strftime('%Y-%m-%d'):
+            results.append(val[1])
 
     exit_if_err(results)
 
     model = lda.lda(results)
     topics = model.show_topics(formatted=False)
     return topics
-    # TODO return stemmed words to original word (maybe find word that contained them
 
 
 def get_interesting_queries(todays_topics):
@@ -142,8 +154,8 @@ def get_interesting_queries(todays_topics):
                 query += " " + next_topic[0]
         if query not in list_of_q:
             list_of_q.append(query)
-            # TODO make sure that not creating query that was searched today
     return list_of_q
+
 
 def main_func():
     try:
@@ -152,10 +164,8 @@ def main_func():
         todays_topics = get_todays_topics()
         list_of_q = get_interesting_queries(todays_topics)
         search_res = get_search.search_web(list_of_q, urls_table_dict)
-        # print search_res
 
         os.remove(history_file_path)
-
 
         if DEBUG:
             pprint.pprint(todays_topics, indent=4)
@@ -164,6 +174,7 @@ def main_func():
         return search_res
     except:
         exit_if_err()
+
 
 if __name__ == '__main__':
     main_func()
