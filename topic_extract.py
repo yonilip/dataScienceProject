@@ -48,7 +48,9 @@ def get_history_file():
             raise Exception
 
         dst_path = "./History"
-        shutil.copy(path, dst_path)
+        # shutil.copy(path, dst_path)
+        shutil.copy(r"/Users/yoni/Documents/Univerity/Data Science/Projects/History", dst_path)
+
     except:
         exit_if_err()
     return dst_path
@@ -67,7 +69,6 @@ def get_tables_as_dicts(history_file_path):
     '''
     c.execute(keywords_table)
     keywords_tuple_list = c.fetchall()
-    print(keywords_tuple_list)
     for t in keywords_tuple_list:
         if is_english(t[3]):  # removes non english queries
             keyword_search_terms_table_dict[t[1]] = t[2:]
@@ -119,9 +120,9 @@ def get_todays_topics():
         # google chromes timestamp is counted in nanosecs from 1,1,1601....
         time_obj = datetime.datetime(1601, 1, 1) + datetime.timedelta(microseconds=last_visit_time)
         # TODO reset this to today
-        if time_obj.strftime('%Y-%m-%d') == datetime.datetime.now().strftime('%Y-%m-%d'):
+        # if time_obj.strftime('%Y-%m-%d') == datetime.datetime.now().strftime('%Y-%m-%d'):
         # if time_obj.strftime('%Y-%m-%d') == '2017-02-23':
-            results.append(val[1])
+        results.append(val[1])
 
     exit_if_err(results)
 

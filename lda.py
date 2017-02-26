@@ -53,6 +53,6 @@ def lda(doc_set):
     corpus = [dictionary.doc2bow(text) for text in texts]
 
     # generate LDA model
-    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=2, id2word=dictionary, passes=20)
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=3, id2word=dictionary, passes=20)
 
     return ldamodel
