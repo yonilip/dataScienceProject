@@ -1,0 +1,15 @@
+{
+  "name": "Recently Visited Urls",
+  "version": "1.2",
+  "description": "Reads your history, and shows recently visited urls.",
+  "permissions": [
+    "storage", "history"
+  ],
+
+  "browser_action": {
+    "default_popup": "visitedUrls.html",
+    "default_icon": "Idea.png"
+  },
+
+  "manifest_version": 2
+}

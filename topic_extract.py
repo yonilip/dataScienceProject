@@ -10,7 +10,7 @@ import get_search
 import sys
 import pprint
 
-DEBUG = True
+DEBUG = False
 
 dst_path = ""
 urls_table_dict = {}
@@ -107,7 +107,7 @@ def get_tables_as_dicts(history_file_path):
 
 def exit_if_err(sizeable_obj=None):
     if not sizeable_obj or len(sizeable_obj) == 0:
-        print "You have to search the web using google chrome to get results!"
+        print("You have to search the web using google chrome to get results!")
         sys.exit(1)
     return
 
@@ -144,21 +144,25 @@ def get_interesting_queries(todays_topics):
             # TODO make sure that not creating query that was searched today
     return list_of_q
 
-
-if __name__ == '__main__':
+def main_func():
     try:
         history_file_path = get_history_file()
         get_tables_as_dicts(history_file_path)
         todays_topics = get_todays_topics()
         list_of_q = get_interesting_queries(todays_topics)
         search_res = get_search.search_web(list_of_q, urls_table_dict)
-        print search_res
+        # print search_res
 
         os.remove(history_file_path)
+
 
         if DEBUG:
             pprint.pprint(todays_topics, indent=4)
             pprint.pprint(list_of_q, indent=4)
             pprint.pprint(search_res, indent=4)
+        return search_res
     except:
         exit_if_err()
+
+if __name__ == '__main__':
+    main_func()
