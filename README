@@ -1,0 +1,20 @@
+Search Query Topic Extraction for Inference - Data Science Project
+
+--------------------------
+
+Authors:
+Danielle Kutner, daniel.kutner@mail.huji.ac.il, danielle.kut
+Yonatan Lipman, yonatan.lipman@mail.huji.ac.il, yonilipman
+Sapir Lazarovitch, sapir.lazarovitch@mail.huji.ac.il, sapir
+
+--------------------------
+
+USAGE:
+1. install the package requirements using 'pip install -r /path/to/requirements.txt'
+2. install the chrome extension by browsing into 'chrome://extensions/' and click on 'Load unpacked extension',
+    and choose the folder named 'chromeExtensionFiles' in this project.
+3. execute in shell/cmd 'urls_handler.py'
+4. chrome tabs with the suggested links should open by the end of the applications execution. you may close them.
+5. when clicking the chrome extension button, it will show the list of the suggested links.
+
+** steps 2,5 are optional for those who want to experience the chrome extension **
